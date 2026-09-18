@@ -93,7 +93,41 @@ body.dark-mode a {
 body.dark-mode button {
   color: #f8fafc !important;
 }
-</style></head>
+</style>
+<style id="theme-position-fix">
+@media (min-width: 769px) {
+  .theme-toggle,
+  #theme-toggle,
+  .theme-btn,
+  .theme-switch {
+    position: relative !important;
+    display: block !important;
+    margin: 8px auto 0 !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  nav {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-toggle,
+  #theme-toggle,
+  .theme-btn,
+  .theme-switch {
+    position: relative !important;
+    margin: 8px auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+}
+</style>
+
+</head>
 <body>
   <header class="nav-wrap">
     <nav class="container nav">
