@@ -94,36 +94,35 @@ body.dark-mode button {
   color: #f8fafc !important;
 }
 </style>
-<style id="theme-position-fix">
-@media (min-width: 769px) {
-  .theme-toggle,
-  #theme-toggle,
-  .theme-btn,
-  .theme-switch {
-    position: relative !important;
-    display: block !important;
-    margin: 8px auto 0 !important;
-    right: auto !important;
-    top: auto !important;
-    transform: none !important;
-  }
 
-  nav {
-    align-items: center;
-  }
+
+
+<style id="quick-links-theme-fix">
+.quick-links {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
 }
 
-@media (max-width: 768px) {
-  .theme-toggle,
-  #theme-toggle,
-  .theme-btn,
-  .theme-switch {
+.quick-links #themeToggle {
     position: relative !important;
-    margin: 8px auto !important;
-    right: auto !important;
-    top: auto !important;
-    transform: none !important;
-  }
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+    margin: 0 !important;
+    vertical-align: middle !important;
+}
+
+@media (max-width: 600px) {
+    .quick-links {
+        justify-content: flex-start !important;
+        gap: 12px !important;
+    }
 }
 </style>
 
@@ -164,6 +163,7 @@ body.dark-mode button {
         <div class="quick-links">
           <a href="mailto:abdulhabib.hasibuan.id@gmail.com">Email</a>
           <a href="https://github.com/DRKNETKING" target="_blank" rel="noreferrer">GitHub ↗</a>
+<button id="themeToggle" aria-label="Ganti tema">🌙</button>
           <span>Tangerang Selatan, Banten</span>
         </div>
       </div>
@@ -287,7 +287,7 @@ body.dark-mode button {
 </section>
 
 <!-- THEME TOGGLE -->
-<button id="themeToggle" aria-label="Ganti tema">🌙</button>
+
 <style>
 #themeToggle{
 position:static !important;
