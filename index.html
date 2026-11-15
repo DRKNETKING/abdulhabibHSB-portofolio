@@ -335,8 +335,10 @@ body.dark-mode footer {
         <a href="#contact" data-en="Contact" data-id="Kontak">Contact</a>
       </div>
       <button id="langToggle" class="lang-btn" aria-label="Switch language">ID</button>
-      <button id="themeToggle" class="lang-btn theme-btn" type="button"
-        aria-label="Ganti tema" title="Ganti tema">🌙</button>
+      <button id="themeToggle" class="lang-btn theme-btn"
+        type="button" aria-label="Aktifkan dark mode"
+        title="Aktifkan dark mode" aria-pressed="false">🌙</button>
+
       
     </nav>
   </header>
@@ -566,35 +568,56 @@ body.dark-mode footer {
 })();
 </script>
 
-<script id="portfolio-theme-script">
+
+
+
+<script id="portfolio-theme-controller">
 (() => {
   const button = document.getElementById("themeToggle");
   if (!button) return;
 
-  let savedTheme = "light";
-  try {
-    savedTheme = localStorage.getItem("theme") || "light";
-  } catch (error) {}
+  const storageKey = "portfolio-theme";
 
-  function applyTheme(isDark) {
+  function readTheme() {
+    try {
+      return localStorage.getItem(storageKey)
+        || localStorage.getItem("theme")
+        || "light";
+    } catch (error) {
+      return "light";
+    }
+  }
+
+  function applyTheme(theme) {
+    const isDark = theme === "dark";
+
     document.body.classList.toggle("dark-mode", isDark);
+    document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+
     button.textContent = isDark ? "☀️" : "🌙";
     button.setAttribute("aria-pressed", String(isDark));
     button.setAttribute(
       "aria-label",
       isDark ? "Aktifkan light mode" : "Aktifkan dark mode"
     );
-    button.title = isDark ? "Aktifkan light mode" : "Aktifkan dark mode";
-  }
+    button.setAttribute(
+      "title",
+      isDark ? "Aktifkan light mode" : "Aktifkan dark mode"
+    );
 
-  applyTheme(savedTheme === "dark");
-
-  button.addEventListener("click", () => {
-    const isDark = !document.body.classList.contains("dark-mode");
-    applyTheme(isDark);
     try {
+      localStorage.setItem(storageKey, isDark ? "dark" : "light");
       localStorage.setItem("theme", isDark ? "dark" : "light");
     } catch (error) {}
+  }
+
+  // Terapkan tema tersimpan ketika halaman dimuat.
+  applyTheme(readTheme());
+
+  // Klik tombol untuk berganti tema.
+  button.addEventListener("click", () => {
+    const isDark = document.body.classList.contains("dark-mode");
+    applyTheme(isDark ? "light" : "dark");
   });
 })();
 </script>
